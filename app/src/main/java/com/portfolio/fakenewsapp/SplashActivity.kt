@@ -4,11 +4,6 @@ import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import org.jsoup.select.Elements
-import java.io.IOException
 
 class SplashActivity : AppCompatActivity(), IJsoupData {
 

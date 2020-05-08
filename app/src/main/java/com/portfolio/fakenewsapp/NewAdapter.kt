@@ -1,6 +1,8 @@
 package com.portfolio.fakenewsapp
 
 import android.app.Activity
+import android.app.IntentService
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -67,9 +69,9 @@ class NewAdapter(recyclerView: RecyclerView, var activity: Activity, var news: M
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is NewsViewHolder){
+        if (holder is NewsViewHolder) {
             holder.bindView(news[position]!!)
-        } else if (holder is LoadViewHolder){
+        } else if (holder is LoadViewHolder) {
             holder.bindView()
         }
     }
