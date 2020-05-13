@@ -1,7 +1,6 @@
 package com.portfolio.fakenewsapp
 
 import android.app.Activity
-import android.app.IntentService
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class NewAdapter(recyclerView: RecyclerView, var activity: Activity, var news: MutableList<New?>):
+class NewsAdapter(recyclerView: RecyclerView, var activity: Activity, var news: MutableList<News?>):
         RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
    val VIEW_TYPE_ITEM = 0
@@ -74,6 +73,17 @@ class NewAdapter(recyclerView: RecyclerView, var activity: Activity, var news: M
         } else if (holder is LoadViewHolder) {
             holder.bindView()
         }
+
+        val newsItem = news[position]
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(activity, DetailsNewsActivity::class.java)
+            intent.putExtra("IMAGE", newsItem!!.image)
+            intent.putExtra("TITLE", newsItem.title)
+            intent.putExtra("DETAILS", newsItem.details)
+            activity.startActivity(intent)
+        }
+
     }
 
     fun setLoaded(){

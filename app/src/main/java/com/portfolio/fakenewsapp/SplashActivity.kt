@@ -7,7 +7,7 @@ import android.os.Bundle
 
 class SplashActivity : AppCompatActivity(), IJsoupData {
 
-    private var loader: AsyncTask<Void, Void, ArrayList<New>>? = null
+    private var loader: AsyncTask<Void, Void, ArrayList<News>>? = null
     private val WEB_PAGE: String = "limitstart=0"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +17,7 @@ class SplashActivity : AppCompatActivity(), IJsoupData {
         loader!!.execute()
     }
 
-    override fun getWebData(datas: ArrayList<New>) {
+    override fun getWebData(datas: ArrayList<News>) {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("NEWS", datas)
             startActivity(intent)

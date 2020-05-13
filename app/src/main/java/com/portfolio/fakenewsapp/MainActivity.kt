@@ -10,10 +10,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), ILoadMore, IJsoupData {
 
-    private var news: ArrayList<New>? = ArrayList()
-    private var newsLoad: MutableList<New?> = ArrayList()
-    lateinit var newAdapter: NewAdapter
-    private var loader: AsyncTask<Void, Void, ArrayList<New>>? = null
+    private var news: ArrayList<News>? = ArrayList()
+    private var newsLoad: MutableList<News?> = ArrayList()
+    lateinit var newsAdapter: NewsAdapter
+    private var loader: AsyncTask<Void, Void, ArrayList<News>>? = null
     private var numberPage: Int = 0
     private var WEB_PAGE: String? = null
 
@@ -27,34 +27,34 @@ class MainActivity : AppCompatActivity(), ILoadMore, IJsoupData {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        news = intent.getSerializableExtra("NEWS") as ArrayList<New>
+        news = intent.getSerializableExtra("NEWS") as ArrayList<News>
         getTenNews(news!!)
 
         recyclerview.layoutManager = LinearLayoutManager(this)
-        newAdapter = NewAdapter(recyclerview, this, newsLoad)
-        recyclerview.adapter = newAdapter
-        newAdapter.getLoadMore(this)
+        newsAdapter = NewsAdapter(recyclerview, this, newsLoad)
+        recyclerview.adapter = newsAdapter
+        newsAdapter.getLoadMore(this)
     }
 
-    private fun getTenNews(listNews: ArrayList<New>) {
+    private fun getTenNews(listNews: ArrayList<News>) {
         for (index in 0..9){
             newsLoad.add(listNews[index])
         }
     }
 
-    override fun getWebData(datas: ArrayList<New>) {
+    override fun getWebData(datas: ArrayList<News>) {
         if (newsLoad.size < 50){
             newsLoad.add(null)
-            newAdapter.notifyItemInserted(newsLoad.size-1)
+            newsAdapter.notifyItemInserted(newsLoad.size-1)
 
             Handler().postDelayed({
                 newsLoad.removeAt(newsLoad.size-1)
-                newAdapter.notifyItemRemoved(newsLoad.size)
+                newsAdapter.notifyItemRemoved(newsLoad.size)
 
                 getTenNews(datas)
 
-                newAdapter.notifyDataSetChanged()
-                newAdapter.setLoaded()
+                newsAdapter.notifyDataSetChanged()
+                newsAdapter.setLoaded()
 
             }, 3000)
         } else {

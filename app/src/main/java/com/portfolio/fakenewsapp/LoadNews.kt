@@ -8,12 +8,12 @@ import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 import java.io.IOException
 
-class LoadNews(var activity: AppCompatActivity?, var page: String): AsyncTask<Void, Void, ArrayList<New>>(){
+class LoadNews(var activity: AppCompatActivity?, var page: String): AsyncTask<Void, Void, ArrayList<News>>(){
 
-        private var news: ArrayList<New> = ArrayList()
+        private var news: ArrayList<News> = ArrayList()
         private var loadedData = activity as IJsoupData
 
-        override fun doInBackground(vararg params: Void?): ArrayList<New> {
+        override fun doInBackground(vararg params: Void?): ArrayList<News> {
             try {
                 val url = "https://www.saude.gov.br/fakenews?$page"
                 val doc: Document = Jsoup.connect(url).get()
@@ -32,7 +32,7 @@ class LoadNews(var activity: AppCompatActivity?, var page: String): AsyncTask<Vo
                     val details: String = tagHeading.select("a").attr("href")
 
                     Log.i("Result", imgUrl + " " + title + " " + details)
-                    news.add(New("https://www.saude.gov.br"+imgUrl, title, details))
+                    news.add(News("https://www.saude.gov.br"+imgUrl, title, details))
                 }
 
             }catch (e: IOException){
@@ -41,7 +41,7 @@ class LoadNews(var activity: AppCompatActivity?, var page: String): AsyncTask<Vo
             return news
         }
 
-        override fun onPostExecute(result: ArrayList<New>?) {
+        override fun onPostExecute(result: ArrayList<News>?) {
             loadedData.getWebData(result!!)
         }
 }
