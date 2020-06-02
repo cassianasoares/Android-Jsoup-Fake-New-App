@@ -22,8 +22,11 @@ class LoadNews(var activity: AppCompatActivity?, var page: String): AsyncTask<Vo
                 //get titles inside of the H2
                 val tagHeading: Elements = doc.select("h2.tileHeadline")
 
+                val times = doc.select("div.span3.tileInfo > ul")
+
                 val size: Int = div.size
-                for (index in 0..size){
+                Log.i("DIV", size.toString())
+                for (index in 0..size-1){
                     //get image link inside tag "img" with attribute src
                     val imgUrl: String = div.select("img").eq(index).attr("src")
                     //get text title inside tag "a"
@@ -31,8 +34,13 @@ class LoadNews(var activity: AppCompatActivity?, var page: String): AsyncTask<Vo
                     //get details news link inside tag "a" with attribute "href"
                     val details: String = tagHeading.select("a").attr("href")
 
-                    Log.i("Result", imgUrl + " " + title + " " + details)
-                    news.add(News("https://www.saude.gov.br"+imgUrl, title, details))
+                    val datePost = times[index].select("li").get(1)
+                    val timePost = times[index].select("li").get(2)
+
+                    Log.i("Result", imgUrl + " " + title.replaceAfter("-", "").replace("-", "") + " " + details + " " + datePost.text())
+                    news.add(News("https://www.saude.gov.br"+imgUrl,
+                        title, details, datePost.text().trim(),
+                        timePost.text().trim()))
                 }
 
             }catch (e: IOException){

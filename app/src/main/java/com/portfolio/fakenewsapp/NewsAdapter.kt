@@ -81,6 +81,8 @@ class NewsAdapter(recyclerView: RecyclerView, var activity: Activity, var news: 
             intent.putExtra("IMAGE", newsItem!!.image)
             intent.putExtra("TITLE", newsItem.title)
             intent.putExtra("DETAILS", newsItem.details)
+            intent.putExtra("DATE", newsItem.date)
+            intent.putExtra("TIME", newsItem.time)
             activity.startActivity(intent)
         }
 

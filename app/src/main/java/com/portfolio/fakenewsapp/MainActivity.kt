@@ -1,9 +1,12 @@
 package com.portfolio.fakenewsapp
 
+import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -60,6 +63,24 @@ class MainActivity : AppCompatActivity(), ILoadMore, IJsoupData {
         } else {
             Toast.makeText(this, "Load data finish!", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun callAbout(){
+        startActivity(Intent(this, AboutActivity::class.java))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main_activity, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId){
+            R.id.btn_about -> callAbout()
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 }

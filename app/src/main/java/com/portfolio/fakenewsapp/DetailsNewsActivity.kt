@@ -32,12 +32,16 @@ class DetailsNewsActivity : AppCompatActivity(), ILoadDetails {
         urlImage = intent.getStringExtra("IMAGE")
         urlDetails = intent.getStringExtra("DETAILS")
 
-        txt_title_detail!!.text = intent.getStringExtra("TITLE")
+        txt_date_news.text = intent.getStringExtra("DATE")
+        txt_time_news.text = intent.getStringExtra("TIME")
+        txt_title_detail!!.text = intent.getStringExtra("TITLE").replaceAfter("-", "")
+            .replace("-", "")
         Picasso.get().load(urlImage).into(image_detail)
         loadDetailsNews = LoadDetailsNews(this, urlDetails!!)
         loadDetailsNews!!.execute()
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setHomeAsUpIndicator ( R.drawable.ic_back )
     }
 
     fun shareNewsImage(){
