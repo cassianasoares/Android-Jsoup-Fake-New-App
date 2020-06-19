@@ -4,4 +4,24 @@
 
 # Fake New App
 
-Anti-fake news app using Web Scraping with Jsoup
+Anti-fake news app using Web Scraping with Jsoup. It gets information about public health directly from the website of the Brazilian Ministry of Health.
+
+
+<p align"center">
+<img src="https://user-images.githubusercontent.com/57958790/85166292-72621080-b23d-11ea-8e5f-cc644131949d.png" width="360" height="600" />
+<img src="https://user-images.githubusercontent.com/57958790/85166616-ebf9fe80-b23d-11ea-993d-4ca8d4f89aa9.png" width="360" height="600" />
+</p>
+
+
+# System Requirements
+
+- Android Studio
+- Jsoup
+
+# Features
+
+- Have up-to-date access to reliable information
+
+# Credits
+- [Ministerio da Saúde](https://www.saude.gov.br/fakenews)
+- [Jsoup.org](https://jsoup.org/download)
