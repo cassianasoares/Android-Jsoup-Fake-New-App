@@ -17,14 +17,14 @@ class MainActivity : AppCompatActivity(), ILoadMore, IJsoupData {
     private var newsLoad: MutableList<News?> = ArrayList()
     lateinit var newsAdapter: NewsAdapter
     private var loader: AsyncTask<Void, Void, ArrayList<News>>? = null
-    private var numberPage: Int = 0
+    private var numberPage: Int = 20
     private var WEB_PAGE: String? = null
 
     override fun onLoadMore() {
-        numberPage+=10
         WEB_PAGE = "start=$numberPage"
         loader = LoadNews(this, WEB_PAGE!!)
         loader!!.execute()
+        numberPage+=10
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
