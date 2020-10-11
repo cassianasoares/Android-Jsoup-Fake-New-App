@@ -20,7 +20,8 @@ Anti-fake news app using Web Scraping with Jsoup. It gets information about publ
 
 # Features
 
-- Have up-to-date access to reliable information
+- Get update access to reliable information
+- Share news image in other apps
 
 # Credits
 - [Ministerio da Saúde](https://www.saude.gov.br/fakenews)
